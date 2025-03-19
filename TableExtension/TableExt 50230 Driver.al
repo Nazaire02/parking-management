@@ -2,7 +2,11 @@ tableextension 50200 Driver extends Customer
 {
     fields
     {
-        // Add changes to table fields here
+        field(50100; "Type d'abonnement"; Option)
+        {
+            DataClassification = ToBeClassified;
+            OptionMembers =Standard, Premium, Gold;
+        }
     }
     
     keys
