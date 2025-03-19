@@ -1,4 +1,4 @@
-table 50202 ParkingZone
+table 50234 ParkingZone
 {
     DataClassification = ToBeClassified;
 

@@ -14,11 +14,14 @@ page 50232 "Vehicule List"
         area(Content)
         {
             repeater(TableHeader){
-                field(ID;Rec.ID)
-                {   }
                 field(Name;Rec.Name){}
                 field(Matricule;Rec.Matricule){}
                 field(Color;Rec.Color){}
+                field(Type;Rec.Type){}
+                field("Vehicule owner";Rec."Vehicule owner")
+                {
+                    TableRelation = "Customer";
+                }
             }
         }
     }

@@ -16,7 +16,12 @@ page 50233 "Vehicule card"
                 {   }
                 field(Name;Rec.Name){}
                 field(Matricule;Rec.Matricule){}
-                field(Color;Rec.Color){}    
+                field(Color;Rec.Color){}  
+                field(Type;Rec.Type){}
+                field("Vehicule owner";Rec."Vehicule owner")
+                {
+                    TableRelation = "Customer"; 
+                }  
             }
         }
     }
