@@ -6,6 +6,7 @@ page 50234 "ParkingZone List"
     SourceTable = ParkingZone;
     Caption = 'Liste des zones de stationnement';
     InsertAllowed = false;
+    ModifyAllowed = false;
     CardPageId="ParkingZone Card";
     
     layout
@@ -26,8 +27,10 @@ page 50234 "ParkingZone List"
                     
                 }
                 field(Status;Rec.Status){}
-                field(HourlyRate;Rec.HourlyRate){}
-                field(DailyRate;Rec.DailyRate){}
+                field(HourlyRate;Rec.HourlyRate){
+                }
+                field(DailyRate;Rec.DailyRate){
+                }
                 field(MonthlyRate;Rec.MonthlyRate){}
             }
         }
@@ -50,4 +53,6 @@ page 50234 "ParkingZone List"
     
     var
         myInt: Integer;
+        dailyRateEst: Decimal;
+        monthlyRateEst: Decimal;
 }

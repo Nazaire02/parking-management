@@ -20,7 +20,7 @@ table 50204 Reservation
         {
             DataClassification = ToBeClassified;
         }
-        field(5; "EndTime"; Time)
+        field(5; "EndTime"; Date)
         {
             DataClassification = ToBeClassified;
         }

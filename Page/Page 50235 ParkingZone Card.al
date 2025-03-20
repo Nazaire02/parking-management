@@ -12,57 +12,59 @@ page 50235 "ParkingZone Card"
         {
             group("Infos du parking")
             {
-                field(ID;Rec.ID)
+                field(Name; Rec.Name)
                 {
-                    
+
                 }
-                field(Name;Rec.Name)
+                field(Location; Rec.Location)
                 {
-                    
+
                 }
-                field(Location;Rec.Location)
+                field(Capacity; Rec.Capacity)
                 {
-                    
+
                 }
-                field(Capacity;Rec.Capacity)
+                field(Status; Rec.Status)
                 {
-                    
+
                 }
-                field(Status;Rec.Status)
+                field(HourlyRate; Rec.HourlyRate)
                 {
-                    
+                    trigger OnValidate()
+                    begin
+                        Rec.DailyRate := Rec.HourlyRate * 24;
+                        Rec.MonthlyRate := Rec.DailyRate * 30;
+                    end;
                 }
-                field(HourlyRate;Rec.HourlyRate)
+                field(DailyRate; Rec.DailyRate)
                 {
-                    
+
                 }
-                field(DailyRate;Rec.DailyRate)
+                field(MonthlyRate; Rec.MonthlyRate)
                 {
-                    
-                }
-                field(MonthlyRate;Rec.MonthlyRate)
-                {
-                    
+
                 }
             }
         }
     }
-    
+
     actions
     {
         area(Processing)
         {
             action(ActionName)
             {
-                
+
                 trigger OnAction()
                 begin
-                    
+
                 end;
             }
         }
     }
-    
+
     var
         myInt: Integer;
+        dailyRateEst: Decimal;
+        monthlyRateEst: Decimal;
 }

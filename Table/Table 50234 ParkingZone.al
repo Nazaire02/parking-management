@@ -4,9 +4,10 @@ table 50234 ParkingZone
 
     fields
     {
-        field(1; "ID"; Code[20])
+        field(1; "ID"; Integer)
         {
             DataClassification = ToBeClassified;
+            AutoIncrement = true;
         }
         field(2; "Name"; Text[50])
         {
