@@ -6,6 +6,7 @@ page 50236 "ParkingSlot List"
     SourceTable = ParkingSlot;
     Caption = 'Liste des places de parking';
     ModifyAllowed = false;
+    InsertAllowed = false;
     CardPageId = "ParkingSlot Card";
 
     layout
@@ -17,6 +18,10 @@ page 50236 "ParkingSlot List"
                 field("Parking Zone"; Rec."Parking Zone")
                 {
                     TableRelation = "ParkingZone";
+                }
+                field("Parking name"; Rec."Parking Zone Name")
+                {
+
                 }
                 field("Status"; Rec."Status")
                 {

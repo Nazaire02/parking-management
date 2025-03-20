@@ -53,6 +53,4 @@ page 50234 "ParkingZone List"
     
     var
         myInt: Integer;
-        dailyRateEst: Decimal;
-        monthlyRateEst: Decimal;
 }

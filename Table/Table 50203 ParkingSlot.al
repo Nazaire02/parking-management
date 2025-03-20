@@ -1,30 +1,44 @@
 table 50203 ParkingSlot
 {
     DataClassification = ToBeClassified;
-    
+
     fields
     {
-        field(1;ID; Code[20])
+        field(1; ID; Integer)
         {
             DataClassification = ToBeClassified;
+            AutoIncrement = true;
         }
-        field(2; "Parking Zone"; Code[20])
+        field(2; "Parking Zone"; Integer)
         {
             DataClassification = ToBeClassified;
             TableRelation = "ParkingZone";
+            trigger OnValidate()
+            var
+                Parking: Record "ParkingZone";
+            begin
+                Parking.SetFilter(Parking."ID", '=%1', Rec."Parking Zone");
+                if Parking.FindFirst() then begin
+                    rec."Parking Zone Name" := Parking.Name;
+                end;
+            end;
         }
-        field(3; "Status"; Option)
+        field(3; "Parking Zone Name"; Text[100])
+        {
+
+        }
+        field(4; "Status"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = "Occupied","Available","Reserved";
         }
-        field(4; "VehiculeType"; Option)
+        field(5; "VehiculeType"; Option)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = "Car","Motorcycle","Bicycle", "Truck";
+            OptionMembers = "Car","Motorcycle","Bicycle","Truck";
         }
     }
-    
+
     keys
     {
         key(Key1; ID)
@@ -32,33 +46,34 @@ table 50203 ParkingSlot
             Clustered = true;
         }
     }
-    
+
     fieldgroups
     {
         // Add changes to field groups here
     }
-    
+
     var
         myInt: Integer;
-    
+        "Parking Zone Name": Text[100];
+
     trigger OnInsert()
     begin
-        
+
     end;
-    
+
     trigger OnModify()
     begin
-        
+
     end;
-    
+
     trigger OnDelete()
     begin
-        
+
     end;
-    
+
     trigger OnRename()
     begin
-        
+
     end;
-    
+
 }

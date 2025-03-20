@@ -12,10 +12,6 @@ page 50237 "ParkingSlot Card"
         {
             group(GroupName)
             {
-                field(ID;Rec.ID)
-                {
-                    
-                }
                 field("Parking Zone";Rec."Parking Zone"){
                     TableRelation = "ParkingZone";
                 }
