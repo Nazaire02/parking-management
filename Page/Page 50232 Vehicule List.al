@@ -21,22 +21,18 @@ page 50232 "Vehicule List"
                 field(Type; Rec.Type) { }
                 field("Vehicule owner"; Rec."Vehicule owner")
                 {
+                    Caption = 'Propriétaire ID';
                     TableRelation = "Customer";
-                    trigger OnValidate()
-                    var
-                        owner: Record "Customer";
-                    begin
-                        owner.SetFilter(owner."No.", '=%1', Rec."Vehicule owner");
-                        if owner.FindFirst() then begin
-                            name := owner.Name;
-                        end;
-                    end;
-                }
-
-                field("Nom du propriétaire"; name)
-                {
-
-
+                    // trigger OnValidate()
+                    // var
+                    //     owner: Record "Customer";
+                    // begin
+                    //     Message(owner.Name);
+                    //     owner.SetFilter(owner."No.", '=%1', Rec."Vehicule owner");
+                    //     if owner.FindFirst() then begin
+                    //         name := owner.Name;
+                    //     end;
+                    // end;
                 }
             }
         }
@@ -59,5 +55,5 @@ page 50232 "Vehicule List"
 
     var
         myInt: Integer;
-        name: Text[100];
+        //name: Text[100];
 }
