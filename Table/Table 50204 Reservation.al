@@ -4,9 +4,10 @@ table 50204 Reservation
     
     fields
     {
-        field(1;ID; code[20])
+        field(1;ID; Integer)
         {
             DataClassification = ToBeClassified;
+            AutoIncrement = true;
         }
         field(2; "StartDate"; Date)
         {
@@ -28,18 +29,51 @@ table 50204 Reservation
         {
             DataClassification = ToBeClassified;
             TableRelation = "Customer";
+
+            trigger OnValidate()
+            var
+                Customer: Record "Customer";
+            begin
+                Customer.SetFilter(Customer."No.", '=%1', Rec."Customer");
+                if Customer.FindFirst() then begin
+                                    Rec."Customer Name" := Customer.Name;
+                end;
+            end;
         }
-        field(7; "Parking Slot"; Code[20])
+        field(7; "Customer Name"; Text[100])
+        {
+            
+        }
+        field(8; "Parking Slot"; Integer)
         {
             DataClassification = ToBeClassified;
             TableRelation = "ParkingSlot";
+
+            trigger OnValidate()
+            var
+                ParkingSlot: Record ParkingSlot;
+            begin
+                ParkingSlot.SetFilter(ParkingSlot.ID, '=%1', Rec."Parking Slot");
+                if ParkingSlot.FindFirst() then begin
+                    Rec."ParkingSlot Name" := ParkingSlot.Name;   
+                    Rec."ParkingZone Name" := ParkingSlot."Parking Zone Name";
+                end;
+            end;
         }
-        field(8; "Vehicule"; Code[20])
+        field(9;"ParkingSlot Name"; Text[100])
+        {
+            
+        }
+        field(10;"ParkingZone Name"; Text[100])
+        {
+            
+        }
+        field(11; "Vehicule"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Vehicule";
         }
-        field(9; "Status"; Option)
+        field(12; "Status"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = "Reserved","Active","Expired";

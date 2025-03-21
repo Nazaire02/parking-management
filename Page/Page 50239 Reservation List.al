@@ -6,6 +6,8 @@ page 50239 "Reservation List"
     SourceTable = Reservation;
     CaptionML = ENU = 'Reservation List', FRA = 'Liste des réservations';
     CardPageId = "Reservation Card";
+    Editable = false;
+    InsertAllowed = false;
 
     layout
     {
@@ -33,9 +35,11 @@ page 50239 "Reservation List"
                 field(EndTime; Rec.EndTime)
                 {
                 }
-                field("Parking Slot"; Rec."Parking Slot")
+                field("ParkingSlot Name";Rec."ParkingSlot Name")
                 {
-                    TableRelation = "ParkingSlot";
+                }
+                field("ParkingZone Name";Rec."ParkingZone Name")
+                {
                 }
                 field(Vehicule; Rec.Vehicule)
                 {

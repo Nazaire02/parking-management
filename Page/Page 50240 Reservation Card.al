@@ -11,9 +11,6 @@ page 50240 "Reservation Card"
         {
             group(Infos)
             {
-                field(ID; Rec.ID)
-                {
-                }
                 field(Customer;Rec.Customer)
                 {
                     TableRelation = "Customer";
@@ -27,8 +24,7 @@ page 50240 "Reservation Card"
                 }
                 field(StartTime;Rec.StartTime)
                 {
-                    Visible = false;
-
+                
                 }
                 field(EndTime;Rec.EndTime)
                 {
