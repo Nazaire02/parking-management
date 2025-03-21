@@ -23,9 +23,10 @@ table 50221 Vehicule
             DataClassification = ToBeClassified;
             
         }
-        field(5;"Type"; Text[50])
+        field(5;"Type"; Option)
         {
             DataClassification = ToBeClassified;
+            OptionMembers = "Car","Motorcycle","Bicycle","Truck";
         }
 
         field(6;"Vehicule owner"; Code[20])

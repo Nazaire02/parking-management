@@ -18,6 +18,16 @@ page 50237 "ParkingSlot Card"
                 field("Parking Zone"; Rec."Parking Zone")
                 {
                     TableRelation = "ParkingZone";
+                    trigger OnValidate()
+                    var
+                        ParkingSlot: Record "ParkingSlot";
+                    begin
+                        ParkingSlot.SetFilter(ParkingSlot."Parking Zone", '=%1', Rec."Parking Zone");
+
+                        if (ParkingSlot.Count >= parkingCapacity) then begin
+                            Error('Vous avez atteint la capacité maximale de cette zone de parking');
+                        end
+                    end;
                 }
                 field("Status"; Rec."Status")
                 {
@@ -45,8 +55,16 @@ page 50237 "ParkingSlot Card"
         }
     }
 
+    trigger OnOpenPage()
     var
-        myInt: Integer;
+        ParkingZone: Record "ParkingZone";
+    begin
+        ParkingZone.SetFilter(ID, '=%1', Rec."Parking Zone");
+        if ParkingZone.FindFirst() then begin
+            parkingCapacity := ParkingZone.Capacity;
+        end;
+    end;
+
 
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     var
@@ -55,9 +73,17 @@ page 50237 "ParkingSlot Card"
         ParkingSlot: Record "ParkingSlot";
     begin
         ParkingSlot.SetFilter(ParkingSlot."Parking Zone", '=%1', Rec."Parking Zone");
-        ParkingZone.SetFilter(ParkingZone.ID, '%=1', Rec."Parking Zone");
-        if (ParkingSlot.Count >= ParkingZone.Capacity) then begin
-            Error('Vous avez atteint la capacité maximale de cette zone de parking %1', ParkingZone.Name);
+        ParkingZone.SetFilter(ID, '=%1', Rec."Parking Zone");
+
+        if ParkingZone.FindFirst() then begin
+            parkingCapacity := ParkingZone.Capacity;
+
+            if (ParkingSlot.Count >= parkingCapacity) then begin
+                Error('Vous avez atteint la capacité maximale de cette zone de parking');
+            end
         end;
     end;
+
+    var
+        parkingCapacity: Integer;
 }
