@@ -12,8 +12,6 @@ page 50233 "Vehicule card"
         {
             group("Vehicule Informations")
             {
-                field(ID;Rec.ID)
-                {   }
                 field(Name;Rec.Name){}
                 field(Matricule;Rec.Matricule){}
                 field(Color;Rec.Color){}  

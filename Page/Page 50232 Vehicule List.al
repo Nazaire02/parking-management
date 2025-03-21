@@ -1,13 +1,14 @@
 page 50232 "Vehicule List"
 {
-    PageType = Card;
+    PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = Vehicule;
     Caption = 'Liste des véhicules';
     InsertAllowed = false;
-    ModifyAllowed = true;
+    ModifyAllowed = false;
     CardPageId = "Vehicule Card";
+    Editable = false;
 
     layout
     {
@@ -19,20 +20,9 @@ page 50232 "Vehicule List"
                 field(Matricule; Rec.Matricule) { }
                 field(Color; Rec.Color) { }
                 field(Type; Rec.Type) { }
-                field("Vehicule owner"; Rec."Vehicule owner")
+                field("Owner Name"; Rec."Vehicule Owner Name")
                 {
-                    Caption = 'Propriétaire ID';
-                    TableRelation = "Customer";
-                    // trigger OnValidate()
-                    // var
-                    //     owner: Record "Customer";
-                    // begin
-                    //     Message(owner.Name);
-                    //     owner.SetFilter(owner."No.", '=%1', Rec."Vehicule owner");
-                    //     if owner.FindFirst() then begin
-                    //         name := owner.Name;
-                    //     end;
-                    // end;
+                    Caption = 'Nom du propriétaire';
                 }
             }
         }

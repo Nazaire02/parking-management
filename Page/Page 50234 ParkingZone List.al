@@ -7,6 +7,7 @@ page 50234 "ParkingZone List"
     Caption = 'Liste des zones de stationnement';
     InsertAllowed = false;
     ModifyAllowed = false;
+    Editable = false;
     CardPageId="ParkingZone Card";
     
     layout

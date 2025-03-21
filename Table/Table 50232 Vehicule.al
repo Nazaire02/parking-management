@@ -4,9 +4,10 @@ table 50221 Vehicule
     
     fields
     {
-        field(1;"ID"; Code[20])
+        field(1;"ID"; Integer)
         {
             DataClassification = ToBeClassified;  
+            AutoIncrement = true;
         }
         field(2;"Name"; Text[50])
         {
@@ -31,6 +32,19 @@ table 50221 Vehicule
         {
             CaptionML = ENU='Vehicule owner', FRA='Propriétaire du véhicule';
             TableRelation = "Customer";
+
+            trigger OnValidate()
+            var
+                Customer: Record "Customer";
+            begin
+                Customer.SetFilter(Customer."No.", '=%1', Rec."Vehicule owner");
+                if Customer.FindFirst() then begin
+                    rec."Vehicule owner Name" := Customer.Name;
+                end;
+            end;
+        }
+        field(7;"Vehicule owner Name"; Text[50])
+        {
         }
     }
     

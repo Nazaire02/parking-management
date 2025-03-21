@@ -9,7 +9,11 @@ table 50203 ParkingSlot
             DataClassification = ToBeClassified;
             AutoIncrement = true;
         }
-        field(2; "Parking Zone"; Integer)
+        field(2; Name; Text[100])
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(3; "Parking Zone"; Integer)
         {
             DataClassification = ToBeClassified;
             TableRelation = "ParkingZone";
@@ -23,16 +27,16 @@ table 50203 ParkingSlot
                 end;
             end;
         }
-        field(3; "Parking Zone Name"; Text[100])
+        field(4; "Parking Zone Name"; Text[100])
         {
-
+    
         }
-        field(4; "Status"; Option)
+        field(5; "Status"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = "Occupied","Available","Reserved";
         }
-        field(5; "VehiculeType"; Option)
+        field(6; "VehiculeType"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = "Car","Motorcycle","Bicycle","Truck";
@@ -54,7 +58,6 @@ table 50203 ParkingSlot
 
     var
         myInt: Integer;
-        "Parking Zone Name": Text[100];
 
     trigger OnInsert()
     begin
