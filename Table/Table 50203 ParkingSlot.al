@@ -29,7 +29,7 @@ table 50203 ParkingSlot
         }
         field(4; "Parking Zone Name"; Text[100])
         {
-    
+
         }
         field(5; "Status"; Option)
         {
@@ -40,6 +40,26 @@ table 50203 ParkingSlot
         {
             DataClassification = ToBeClassified;
             OptionMembers = "Car","Motorcycle","Bicycle","Truck";
+        }
+        field(7; "Total Slot"; Integer)
+        {
+            CalcFormula = Count(ParkingSlot);
+            FieldClass = FlowField;
+        }
+        field(8; "Occupied Slot"; Integer)
+        {
+            CalcFormula = Count(ParkingSlot where(Status = Const(Occupied)));
+            FieldClass = FlowField;
+        }
+        field(9; "Reserved Slot"; Integer)
+        {
+            CalcFormula = Count(ParkingSlot where(Status = Const(Reserved)));
+            FieldClass = FlowField;
+        }
+        field(10; "Available Slot"; Integer)
+        {
+            CalcFormula = Count(ParkingSlot where(Status = Const(Available)));
+            FieldClass = FlowField;
         }
     }
 

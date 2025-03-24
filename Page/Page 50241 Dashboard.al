@@ -9,29 +9,14 @@ page 50241 Dashboard
     {
         area(RoleCenter)
         {
-
+            part("ParkingSlot Cue"; "ParkingSot Cue") { }
+            part("Vehicule Cue"; "Vehicule Cue") { }
+            part("Customer cue"; "Customer cue") { }
         }
     }
 
     actions
     {
-        // area(Creation)
-        // {
-        //     action(ActionBarAction)
-        //     {
-        //         RunObject = Page ObjectName;
-        //     }
-        // }
-        // area(Sections)
-        // {
-        //     group(SectionsGroupName)
-        //     {
-        //         action(SectionsAction)
-        //         {
-        //             RunObject = Page ObjectName;
-        //         }
-        //     }
-        // }
         area(Embedding)
         {
             action(Vehicule)
@@ -66,6 +51,9 @@ page 50241 Dashboard
             }
         }
     }
+
+    var
+        Driver: Record "Customer";
 }
 
 profile PackingManager

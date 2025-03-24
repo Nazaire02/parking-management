@@ -47,6 +47,11 @@ table 50221 Vehicule
         field(7;"Vehicule owner Name"; Text[50])
         {
         }
+        field(8;"Total Vehicule"; Integer)
+        {
+            CalcFormula = Count(Vehicule);
+            FieldClass = FlowField;
+        }
     }
     
     keys

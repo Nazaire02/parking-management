@@ -1,10 +1,10 @@
 table 50204 Reservation
 {
     DataClassification = ToBeClassified;
-    
+
     fields
     {
-        field(1;ID; Integer)
+        field(1; ID; Integer)
         {
             DataClassification = ToBeClassified;
             AutoIncrement = true;
@@ -21,7 +21,7 @@ table 50204 Reservation
         {
             DataClassification = ToBeClassified;
         }
-        field(5; "EndTime"; Date)
+        field(5; "EndTime"; Time)
         {
             DataClassification = ToBeClassified;
         }
@@ -36,13 +36,13 @@ table 50204 Reservation
             begin
                 Customer.SetFilter(Customer."No.", '=%1', Rec."Customer");
                 if Customer.FindFirst() then begin
-                                    Rec."Customer Name" := Customer.Name;
+                    Rec."Customer Name" := Customer.Name;
                 end;
             end;
         }
         field(7; "Customer Name"; Text[100])
         {
-            
+
         }
         field(8; "Parking Slot"; Integer)
         {
@@ -55,18 +55,18 @@ table 50204 Reservation
             begin
                 ParkingSlot.SetFilter(ParkingSlot.ID, '=%1', Rec."Parking Slot");
                 if ParkingSlot.FindFirst() then begin
-                    Rec."ParkingSlot Name" := ParkingSlot.Name;   
+                    Rec."ParkingSlot Name" := ParkingSlot.Name;
                     Rec."ParkingZone Name" := ParkingSlot."Parking Zone Name";
                 end;
             end;
         }
-        field(9;"ParkingSlot Name"; Text[100])
+        field(9; "ParkingSlot Name"; Text[100])
         {
-            
+
         }
-        field(10;"ParkingZone Name"; Text[100])
+        field(10; "ParkingZone Name"; Text[100])
         {
-            
+
         }
         field(11; "Vehicule"; Code[20])
         {
@@ -78,8 +78,12 @@ table 50204 Reservation
             DataClassification = ToBeClassified;
             OptionMembers = "Reserved","Active","Expired";
         }
+        field(13; "Total Amount"; Decimal)
+        {
+
+        }
     }
-    
+
     keys
     {
         key(Key1; ID)
@@ -87,33 +91,40 @@ table 50204 Reservation
             Clustered = true;
         }
     }
-    
+
     fieldgroups
     {
         // Add changes to field groups here
     }
-    
+
     var
         myInt: Integer;
-    
+
     trigger OnInsert()
     begin
-        
     end;
-    
+
     trigger OnModify()
+    var
+        StartDateTime: DateTime;
+        EndDateTime: DateTime;
+        TimeDifference: Duration;
     begin
-        
+        // StartDateTime := CreateDateTime(Rec."StartDate", Rec."StartTime");
+        // EndDateTime := CreateDateTime(Rec."EndDate", Rec."EndTime");
+        // TimeDifference := EndDateTime - StartDateTime;
+        // Rec."Total Amount" := TimeDifference / 1000 / 60 / 60;
+        // Message('Total Amount: %1', Rec."Total Amount");
     end;
-    
+
     trigger OnDelete()
     begin
-        
+
     end;
-    
+
     trigger OnRename()
     begin
-        
+
     end;
-    
+
 }

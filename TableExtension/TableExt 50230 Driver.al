@@ -7,6 +7,11 @@ tableextension 50200 Driver extends Customer
             DataClassification = ToBeClassified;
             OptionMembers =Standard, Premium, Gold;
         }
+        field(50101; "Total driver"; Integer)
+        {
+            FieldClass = FlowField;
+            CalcFormula = Count(Customer);
+        }
     }
     
     keys
