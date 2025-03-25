@@ -43,10 +43,16 @@ page 50241 Dashboard
                 Caption = 'Liste des places de parking';
                 ApplicationArea = All;
             }
-            action(Reservation)
+            action("ParkingRecord List")
             {
                 RunObject = Page "ParkingRecord List";
                 CaptionML = ENU = 'Tracks each parking session', FRA = 'Suivi de chaque session de stationnement';
+                ApplicationArea = All;
+            }
+            action("ParkingRcord Active List")
+            {
+                RunObject = Page "ParkingRecord Active List";
+                CaptionML = ENU = 'Tracks active parking', FRA = 'Suivi des stationnement en cours';
                 ApplicationArea = All;
             }
         }

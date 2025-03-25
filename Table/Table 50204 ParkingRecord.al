@@ -57,6 +57,7 @@ table 50204 ParkingRecord
                 if ParkingSlot.FindFirst() then begin
                     Rec."ParkingSlot Name" := ParkingSlot.Name;
                     Rec."ParkingZone Name" := ParkingSlot."Parking Zone Name";
+                    Rec.ParkingZone := ParkingSlot."Parking Zone";
                 end;
             end;
         }
@@ -68,17 +69,21 @@ table 50204 ParkingRecord
         {
 
         }
-        field(11; "Vehicule"; Code[20])
+        field(11; "ParkingZone"; Integer)
+        {
+
+        }
+        field(12; "Vehicule"; Code[20])
         {
             DataClassification = ToBeClassified;
             TableRelation = "Vehicule";
         }
-        field(12; "Status"; Option)
+        field(13; "Status"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = "Active","Expired";
         }
-        field(13; "Total Amount"; Decimal)
+        field(14; "Total Amount"; Decimal)
         {
 
         }

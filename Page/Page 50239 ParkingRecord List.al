@@ -5,7 +5,7 @@ page 50239 "ParkingRecord List"
     UsageCategory = Administration;
     SourceTable = ParkingRecord;
     CaptionML = ENU = 'Tracks each parking session', FRA = 'Suivi de chaque session de stationnement';
-    CardPageId = "ParkingRecord Card";
+    CardPageId = "ParkingRecord Card Add";
     Editable = false;
     InsertAllowed = false;
 

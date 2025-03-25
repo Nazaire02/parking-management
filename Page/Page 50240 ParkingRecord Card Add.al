@@ -1,4 +1,4 @@
-page 50240 "ParkingRecord Card"
+page 50240 "ParkingRecord Card Add"
 {
     PageType = Card;
     ApplicationArea = All;
@@ -19,7 +19,7 @@ page 50240 "ParkingRecord Card"
                 field(StartDate;Rec.StartDate)
                 {
                 }
-                field(EndDate;Rec.EndDate)
+                field(StartTime;Rec.StartTime)
                 {
                 }
                 field("Parking Slot";Rec."Parking Slot")
