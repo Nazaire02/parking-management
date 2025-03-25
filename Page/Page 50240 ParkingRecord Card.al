@@ -4,7 +4,7 @@ page 50240 "ParkingRecord Card"
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = ParkingRecord;
-    Caption='Reserver une place de parking';
+    Caption='Ajouter un véhicule dans le parking';
     layout
     {
         area(Content)
