@@ -1,11 +1,11 @@
-page 50239 "Reservation List"
+page 50239 "ParkingRecord List"
 {
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = Reservation;
-    CaptionML = ENU = 'Reservation List', FRA = 'Liste des réservations';
-    CardPageId = "Reservation Card";
+    SourceTable = ParkingRecord;
+    CaptionML = ENU = 'Tracks each parking session', FRA = 'Suivi de chaque session de stationnement';
+    CardPageId = "ParkingRecord Card";
     Editable = false;
     InsertAllowed = false;
 

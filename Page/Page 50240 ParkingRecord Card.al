@@ -1,9 +1,9 @@
-page 50240 "Reservation Card"
+page 50240 "ParkingRecord Card"
 {
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = Reservation;
+    SourceTable = ParkingRecord;
     Caption='Reserver une place de parking';
     layout
     {
@@ -22,13 +22,6 @@ page 50240 "Reservation Card"
                 field(EndDate;Rec.EndDate)
                 {
                 }
-                field(StartTime;Rec.StartTime)
-                {
-                
-                }
-                field(EndTime;Rec.EndTime)
-                {
-                }
                 field("Parking Slot";Rec."Parking Slot")
                 {
                     TableRelation = "ParkingSlot";
@@ -38,7 +31,9 @@ page 50240 "Reservation Card"
                     TableRelation = "Vehicule";
                 }
                 field("Status";Rec."Status")
-                {}
+                {
+                    Editable = false;
+                }
             }
         }
     }

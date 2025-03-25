@@ -1,4 +1,4 @@
-table 50204 Reservation
+table 50204 ParkingRecord 
 {
     DataClassification = ToBeClassified;
 
@@ -76,7 +76,7 @@ table 50204 Reservation
         field(12; "Status"; Option)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = "Reserved","Active","Expired";
+            OptionMembers = "Active","Expired";
         }
         field(13; "Total Amount"; Decimal)
         {

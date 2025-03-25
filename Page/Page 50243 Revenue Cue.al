@@ -3,7 +3,7 @@ page 50243 "Revenue Cue"
     PageType = CardPart;
     ApplicationArea = All;
     Caption = 'Revenue résumé';
-    SourceTable= Reservation;
+    SourceTable= ParkingRecord;
     
     layout
     {

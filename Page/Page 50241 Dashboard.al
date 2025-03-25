@@ -45,8 +45,8 @@ page 50241 Dashboard
             }
             action(Reservation)
             {
-                RunObject = Page "Reservation List";
-                Caption = 'Liste des réservations';
+                RunObject = Page "ParkingRecord List";
+                CaptionML = ENU = 'Tracks each parking session', FRA = 'Suivi de chaque session de stationnement';
                 ApplicationArea = All;
             }
         }
