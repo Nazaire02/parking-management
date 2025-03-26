@@ -47,6 +47,8 @@ page 50239 "ParkingRecord List"
                 }
                 field("Status"; Rec."Status")
                 { }
+                field("Total Amount"; Rec."Total Amount")
+                { }
             }
         }
     }

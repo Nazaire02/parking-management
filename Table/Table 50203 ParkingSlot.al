@@ -34,7 +34,7 @@ table 50203 ParkingSlot
         field(5; "Status"; Option)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = "Occupied","Available","Reserved";
+            OptionMembers = "Available","Occupied";
         }
         field(6; "VehiculeType"; Option)
         {
@@ -51,12 +51,7 @@ table 50203 ParkingSlot
             CalcFormula = Count(ParkingSlot where(Status = Const(Occupied)));
             FieldClass = FlowField;
         }
-        field(9; "Reserved Slot"; Integer)
-        {
-            CalcFormula = Count(ParkingSlot where(Status = Const(Reserved)));
-            FieldClass = FlowField;
-        }
-        field(10; "Available Slot"; Integer)
+        field(9; "Available Slot"; Integer)
         {
             CalcFormula = Count(ParkingSlot where(Status = Const(Available)));
             FieldClass = FlowField;

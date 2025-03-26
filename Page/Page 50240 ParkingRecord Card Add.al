@@ -4,55 +4,87 @@ page 50240 "ParkingRecord Card Add"
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = ParkingRecord;
-    Caption='Ajouter un véhicule dans le parking';
+    Caption = 'Ajouter un véhicule dans le parking';
     layout
     {
         area(Content)
         {
             group(Infos)
             {
-                field(Customer;Rec.Customer)
+
+                field("Parking Slot"; Rec."Parking Slot")
                 {
+                    ShowMandatory = true;
+                    TableRelation = "ParkingSlot";
+                    trigger OnValidate()
+                    begin
+                        ParkingSlot.Reset();
+                        ParkingSlot.SetFilter(ID, '=%1', Rec."Parking Slot");
+                        if (ParkingSlot.FindFirst() and (ParkingSlot.Status = ParkingSlot.Status::Occupied)) then begin
+                            Error('Parking Slot is already occupied');
+                        end;
+                    end;
+                }
+                field(Customer; Rec.Customer)
+                {
+                    ShowMandatory = true;
                     TableRelation = "Customer";
                     Caption = 'Customer ID';
+
+                    trigger OnValidate()
+                    begin
+                        Validation.RequiredParkingSlot(Rec."Parking Slot");
+                    end;
                 }
-                field(StartDate;Rec.StartDate)
+                field(StartDate; Rec.StartDate)
                 {
+                    ShowMandatory = true;
+                    trigger OnValidate()
+                    begin
+                        Validation.RequiredParkingSlot(Rec."Parking Slot");
+                    end;
                 }
-                field(StartTime;Rec.StartTime)
+                field(StartTime; Rec.StartTime)
                 {
+                    ShowMandatory = true;
+                    trigger OnValidate()
+                    begin
+                        Validation.RequiredParkingSlot(Rec."Parking Slot");
+                    end;
                 }
-                field("Parking Slot";Rec."Parking Slot")
+                field(Vehicule; Rec.Vehicule)
                 {
-                    TableRelation = "ParkingSlot";
-                }
-                field(Vehicule;Rec.Vehicule)
-                {
+                    ShowMandatory = true;
                     TableRelation = "Vehicule";
+                    trigger OnValidate()
+                    begin
+                        Validation.RequiredParkingSlot(Rec."Parking Slot");
+                    end;
                 }
-                field("Status";Rec."Status")
+                field("Status"; Rec."Status")
                 {
                     Editable = false;
                 }
             }
         }
     }
-    
-    actions
-    {
-        area(Processing)
-        {
-            action(ActionName)
-            {
-                
-                trigger OnAction()
-                begin
-                    
-                end;
-            }
-        }
-    }
-    
+
+    trigger OnClosePage()
     var
         myInt: Integer;
+    begin
+        ParkingSlot.Reset();
+        ParkingSlot.SetFilter(ID, '=%1', Rec."Parking Slot");
+        if (
+            ParkingSlot.FindFirst()
+        ) then begin
+            Message('Parking Slot is now occupied');
+            ParkingSlot.Status := ParkingSlot.Status::Occupied;
+            ParkingSlot.Modify();
+        end;
+    end;
+
+    var
+        Validation: Codeunit "Validation";
+        ParkingSlot: Record "ParkingSlot";
 }

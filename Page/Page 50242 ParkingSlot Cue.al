@@ -27,13 +27,6 @@ page 50242 "ParkingSot Cue"
                     Editable = false;
                     Caption = 'Occupied Parking Slots';
                 }
-                field("ParkingSlots - Reserved"; Rec."Reserved Slot")
-                {
-                    ApplicationArea = All;
-                    Editable = false;
-                    DrillDownPageID = "ParkingSlot List";
-                    Caption = 'Reserved Parking Slots';
-                }
                 field("ParkingSlots - Available"; Rec."Available Slot")
                 {
                     ApplicationArea = All;

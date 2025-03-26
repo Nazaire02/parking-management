@@ -69,6 +69,7 @@ page 50247 "ParkingRecord Active List"
         EndDateTime: DateTime;
         TimeDifference: Duration;
         ParkingZone: Record "ParkingZone";
+        ParkingSlot: Record "ParkingSlot";
         TotalDays: Integer;
         TotalHours: Integer;
         TotalMinutes: Integer;
@@ -91,6 +92,14 @@ page 50247 "ParkingRecord Active List"
             if ParkingZone.FindFirst() then begin
                 toPaid := TotalHours * ParkingZone.HourlyRate + TotalDays * ParkingZone.DailyRate;
                 Rec."Total Amount" := toPaid;
+                Rec.Status := Rec.Status::"Expired";
+                Rec.Modify(true);
+            end;
+
+            ParkingSlot.SetFilter(ID, '=%1', Rec."Parking Slot");
+            if ParkingSlot.FindFirst() then begin
+                ParkingSlot.Status := ParkingSlot.Status::"Available";
+                ParkingSlot.Modify(true);
             end;
             Message('Total Amount: %1', toPaid);
         end;
