@@ -76,12 +76,12 @@ table 50204 ParkingRecord
         field(12; "Vehicule"; Code[20])
         {
             DataClassification = ToBeClassified;
-            TableRelation = "Vehicule";
+            TableRelation = "Vehicule";          
         }
         field(13; "Status"; Option)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = "Active","Expired";
+            OptionMembers = "In Progress","Active","Expired";
         }
         field(14; "Total Amount"; Decimal)
         {

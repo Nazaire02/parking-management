@@ -5,6 +5,8 @@ page 50240 "ParkingRecord Card Add"
     UsageCategory = Administration;
     SourceTable = ParkingRecord;
     Caption = 'Ajouter un véhicule dans le parking';
+    DeleteAllowed = false;
+
     layout
     {
         area(Content)
@@ -55,6 +57,7 @@ page 50240 "ParkingRecord Card Add"
                 field(Vehicule; Rec.Vehicule)
                 {
                     ShowMandatory = true;
+
                     TableRelation = "Vehicule";
                     trigger OnValidate()
                     begin
@@ -69,20 +72,37 @@ page 50240 "ParkingRecord Card Add"
         }
     }
 
-    trigger OnClosePage()
-    var
-        myInt: Integer;
-    begin
-        ParkingSlot.Reset();
-        ParkingSlot.SetFilter(ID, '=%1', Rec."Parking Slot");
-        if (
-            ParkingSlot.FindFirst()
-        ) then begin
-            Message('Parking Slot is now occupied');
-            ParkingSlot.Status := ParkingSlot.Status::Occupied;
-            ParkingSlot.Modify();
-        end;
-    end;
+    actions
+    {
+        area(navigation)
+        {
+            action(Validate)
+            {
+                ApplicationArea = All;
+                Caption = 'Valider';
+                Image = Confirm;
+
+                trigger OnAction()
+                begin
+                    ParkingSlot.Reset();
+                    ParkingSlot.SetFilter(ID, '=%1', Rec."Parking Slot");
+                    if (
+                        ParkingSlot.FindFirst() and
+                        (Rec.Customer <> '') and
+                        (Rec.StartDate <> 0D) and
+                        (Rec.StartTime <> 0T) and
+                        (Rec.Vehicule <> '')
+                    )
+                    then begin
+                        Rec.Status := Rec.Status::Active;
+                        Message('Parking Slot is now occupiedhhhhhhhhhhh', Rec."Customer");
+                        ParkingSlot.Status := ParkingSlot.Status::Occupied;
+                        ParkingSlot.Modify();
+                    end;
+                end;
+            }
+        }
+    }
 
     var
         Validation: Codeunit "Validation";
