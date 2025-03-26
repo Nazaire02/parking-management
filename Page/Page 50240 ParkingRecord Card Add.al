@@ -94,10 +94,11 @@ page 50240 "ParkingRecord Card Add"
                         (Rec.Vehicule <> '')
                     )
                     then begin
-                        Rec.Status := Rec.Status::Active;
-                        Message('Parking Slot is now occupiedhhhhhhhhhhh', Rec."Customer");
-                        ParkingSlot.Status := ParkingSlot.Status::Occupied;
-                        ParkingSlot.Modify();
+                        if Rec.Status = Rec.Status::"In Progress" then begin
+                            Rec.Status := Rec.Status::Active;
+                            ParkingSlot.Status := ParkingSlot.Status::Occupied;
+                            ParkingSlot.Modify();
+                        end;
                     end;
                 end;
             }
