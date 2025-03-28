@@ -81,8 +81,8 @@ page 50240 "ParkingRecord Card Add"
                 ApplicationArea = All;
                 Caption = 'Valider';
                 Image = Confirm;
-
                 trigger OnAction()
+                var
                 begin
                     ParkingSlot.Reset();
                     ParkingSlot.SetFilter(ID, '=%1', Rec."Parking Slot");
@@ -91,7 +91,7 @@ page 50240 "ParkingRecord Card Add"
                         (Rec.Customer <> '') and
                         (Rec.StartDate <> 0D) and
                         (Rec.StartTime <> 0T) and
-                        (Rec.Vehicule <> '')
+                        (Rec.Vehicule <> 0)
                     )
                     then begin
                         if Rec.Status = Rec.Status::"In Progress" then begin

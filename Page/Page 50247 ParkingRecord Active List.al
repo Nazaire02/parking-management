@@ -74,6 +74,7 @@ page 50247 "ParkingRecord Active List"
         TotalHours: Integer;
         TotalMinutes: Integer;
         toPaid: Decimal;
+        ReportPark: Report ParkingRecord;
     begin
         if (Rec.StartDate <> 0D) and (Rec.EndDate <> 0D) and (Rec.StartTime <> 0T) and (Rec.EndTime <> 0T) then begin
             StartDateTime := CreateDateTime(Rec.StartDate, Rec.StartTime);
@@ -100,6 +101,7 @@ page 50247 "ParkingRecord Active List"
             if ParkingSlot.FindFirst() then begin
                 ParkingSlot.Status := ParkingSlot.Status::"Available";
                 ParkingSlot.Modify(true);
+                Report.RunModal(50204, true, false, Rec);
             end;
             Message('Total Amount: %1', toPaid);
         end;

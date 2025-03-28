@@ -71,19 +71,47 @@ table 50204 ParkingRecord
         }
         field(11; "ParkingZone"; Integer)
         {
-
+            trigger OnValidate()
+            var
+                ParkingZone: Record "ParkingZone";
+            begin
+                ParkingZone.SetFilter(ParkingZone.ID, '=%1', Rec."ParkingZone");
+                if ParkingZone.FindFirst() then begin
+                    Rec."Hourly Rate" := ParkingZone.HourlyRate;
+                    Rec."Daily Rate" := ParkingZone.DailyRate;
+                end;
+            end;
         }
-        field(12; "Vehicule"; Code[20])
+        field(12;"Hourly Rate"; Decimal)
         {
             DataClassification = ToBeClassified;
-            TableRelation = "Vehicule";          
         }
-        field(13; "Status"; Option)
+        field(13;"Daily Rate"; Decimal){}
+        field(14; "Vehicule"; Integer)
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "Vehicule";  
+
+            trigger OnValidate()
+            var
+                Vehicule: Record "Vehicule";
+            begin
+                Vehicule.SetFilter(Vehicule."ID", '=%1', Rec."Vehicule");
+                if Vehicule.FindFirst() then begin
+                    Rec."Vehicule Matricule" := Vehicule.Matricule;
+                end;
+            end;        
+        }
+        field(15; "Vehicule Matricule"; Text[100])
+        {
+
+        }
+        field(16; "Status"; Option)
         {
             DataClassification = ToBeClassified;
             OptionMembers = "In Progress","Active","Expired";
         }
-        field(14; "Total Amount"; Decimal)
+        field(17; "Total Amount"; Decimal)
         {
 
         }
