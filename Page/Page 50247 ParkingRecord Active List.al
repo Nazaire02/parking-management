@@ -56,6 +56,26 @@ page 50247 "ParkingRecord Active List"
             }
         }
     }
+    actions
+    {
+        area(Processing)
+        {
+            action(Validate)
+            {
+                ApplicationArea = All;
+                Caption = 'Etat de la place de parking';
+                trigger OnAction()
+                var
+                    parking: Record "ParkingRecord";
+                begin
+                    parking.SetRange(ID, Rec.ID);
+                    if parking.FindFirst() then begin
+                        Report.RunModal(50203, false, false, parking);
+                    end;
+                end;
+            }
+        }
+    }
 
     trigger OnOpenPage()
     var
@@ -74,6 +94,7 @@ page 50247 "ParkingRecord Active List"
         TotalHours: Integer;
         TotalMinutes: Integer;
         toPaid: Decimal;
+        parking: Record "ParkingRecord";
     begin
         if (Rec.StartDate <> 0D) and (Rec.EndDate <> 0D) and (Rec.StartTime <> 0T) and (Rec.EndTime <> 0T) then begin
             StartDateTime := CreateDateTime(Rec.StartDate, Rec.StartTime);
@@ -100,9 +121,16 @@ page 50247 "ParkingRecord Active List"
             if ParkingSlot.FindFirst() then begin
                 ParkingSlot.Status := ParkingSlot.Status::"Available";
                 ParkingSlot.Modify(true);
-                //Report.Run(50203, true, false, Rec);
+                // Report.RunModal(50203, true, false, Rec);
+
             end;
+            parking.SetRange(ID, Rec.ID);
+            if parking.FindFirst() then begin
+                Report.RunModal(50203, false, false, parking);
+            end;
+
             Message('Total Amount: %1', toPaid);
         end;
     end;
+
 }

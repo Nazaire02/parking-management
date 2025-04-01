@@ -11,6 +11,55 @@
       <rd:DataSourceID>fbfb855e-95a5-48b8-983a-172ef3ad8b2f</rd:DataSourceID>
     </DataSource>
   </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+      <Fields>
+        <Field Name="ParkingZone_Name">
+          <DataField>ParkingZone_Name</DataField>
+        </Field>
+        <Field Name="Vehicule_Matricule">
+          <DataField>Vehicule_Matricule</DataField>
+        </Field>
+        <Field Name="Customer_Name">
+          <DataField>Customer_Name</DataField>
+        </Field>
+        <Field Name="StartDate">
+          <DataField>StartDate</DataField>
+        </Field>
+        <Field Name="StartTime">
+          <DataField>StartTime</DataField>
+        </Field>
+        <Field Name="EndDate">
+          <DataField>EndDate</DataField>
+        </Field>
+        <Field Name="EndTime">
+          <DataField>EndTime</DataField>
+        </Field>
+        <Field Name="Total_Amount">
+          <DataField>Total_Amount</DataField>
+        </Field>
+        <Field Name="Total_AmountFormat">
+          <DataField>Total_AmountFormat</DataField>
+        </Field>
+        <Field Name="Hourly_Rate">
+          <DataField>Hourly_Rate</DataField>
+        </Field>
+        <Field Name="Hourly_RateFormat">
+          <DataField>Hourly_RateFormat</DataField>
+        </Field>
+        <Field Name="Daily_Rate">
+          <DataField>Daily_Rate</DataField>
+        </Field>
+        <Field Name="Daily_RateFormat">
+          <DataField>Daily_RateFormat</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -260,7 +309,9 @@
                   </TextRun>
                   <TextRun>
                     <Value>=First(Fields!EndTime.Value, "DataSet_Result")</Value>
-                    <Style />
+                    <Style>
+                      <Format>t</Format>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -481,6 +532,12 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -520,53 +577,4 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Fields>
-        <Field Name="ParkingZone_Name">
-          <DataField>ParkingZone_Name</DataField>
-        </Field>
-        <Field Name="Vehicule_Matricule">
-          <DataField>Vehicule_Matricule</DataField>
-        </Field>
-        <Field Name="Customer_Name">
-          <DataField>Customer_Name</DataField>
-        </Field>
-        <Field Name="StartDate">
-          <DataField>StartDate</DataField>
-        </Field>
-        <Field Name="StartTime">
-          <DataField>StartTime</DataField>
-        </Field>
-        <Field Name="EndDate">
-          <DataField>EndDate</DataField>
-        </Field>
-        <Field Name="EndTime">
-          <DataField>EndTime</DataField>
-        </Field>
-        <Field Name="Total_Amount">
-          <DataField>Total_Amount</DataField>
-        </Field>
-        <Field Name="Total_AmountFormat">
-          <DataField>Total_AmountFormat</DataField>
-        </Field>
-        <Field Name="Hourly_Rate">
-          <DataField>Hourly_Rate</DataField>
-        </Field>
-        <Field Name="Hourly_RateFormat">
-          <DataField>Hourly_RateFormat</DataField>
-        </Field>
-        <Field Name="Daily_Rate">
-          <DataField>Daily_Rate</DataField>
-        </Field>
-        <Field Name="Daily_RateFormat">
-          <DataField>Daily_RateFormat</DataField>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-    </DataSet>
-  </DataSets>
 </Report>
